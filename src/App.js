@@ -7,12 +7,13 @@ import logo2 from './assets/logo1.jpg';
 
 
 class App extends React.Component{
-  url = 'https://www.bridgelabz.com/'
+  url = 'https://www.bridgelabz.com/' 
   constructor(){
    
    super();
    this.state = {
-    title : 'Hello From Ankita'
+     userName: ''
+     
   }
   }
 
@@ -23,12 +24,31 @@ class App extends React.Component{
      window.open(this.url, "_blank");
    }
   
+   onNameChange = (event) => {
+     console.log("save button is clicked :" , event.target.value); 
+     const nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s{2,}$]');
+     this.setState({userName: event.target.value})
+     if (nameRegex.test(event.target.value)){
+       this.setState({nameError: ''})
+     }
+
+     else{
+       this.setState({nameError: 'name is incorrect'})
+     }
+
+   }
   render() {
     return (
       <div>
-        <h1> {this.state.title} </h1>
-        <img src={logo2} onClick={this.onClick} alt="The bridgelabz logo:"></img>
-        
+      <div>
+        <h1>HELLO {this.state.userName} FROM BRIDGELABZ </h1>
+         <h1> <img src={logo2} onClick={this.onClick} alt="The bridgelabz logo:"/> </h1>
+      </div>
+      <div>
+         <input onChange ={this.onNameChange}/>
+         <span className="error-output">{this.state.nameError}</span>
+
+      </div>
       </div>
     );
   }
