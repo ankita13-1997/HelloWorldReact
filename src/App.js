@@ -1,23 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
 
+
 import React, { Component } from 'react';
 import logo2 from './assets/logo1.jpg';
 
-class App extends React.Component{
 
+class App extends React.Component{
+  url = 'https://www.bridgelabz.com/'
   constructor(){
+   
    super();
    this.state = {
-    title : "Hello From Ankita"
+    title : 'Hello From Ankita'
   }
   }
+
+  //onclick function
+  //event handling
+   onClick = ($event) => {
+     console.log("save button is clicked ",$event);
+     window.open(this.url, "_blank");
+   }
   
   render() {
     return (
       <div>
-        <img src={logo2} alt="my logo"></img>
         <h1> {this.state.title} </h1>
+        <img src={logo2} onClick={this.onClick} alt="The bridgelabz logo:"></img>
+        
       </div>
     );
   }
